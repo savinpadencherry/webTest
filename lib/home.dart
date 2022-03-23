@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:test123/pages/center.dart';
 import 'package:test123/pages/leftCol.dart';
 import 'package:test123/pages/rightCol.dart';
+import 'package:test123/widgets/post.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  List<Post>? posts;
+  Home({Key? key, this.posts}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -96,14 +98,18 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Row(
-        children: const [
-          Expanded(
+        children: [
+          const Expanded(
             child: Column1(),
           ),
           Expanded(
-            child: CenterBody(),
+            child: CenterBody(
+              posts: widget.posts!,
+            ),
           ),
-          Expanded(child: RightRow())
+          const Expanded(
+            child: RightRow(),
+          ),
         ],
       ),
     );
